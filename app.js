@@ -7,7 +7,12 @@ const sequelize = require("./utils/database");
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5500",
+    credentials: true,
+  })
+);
 
 app.use("/user", userRouter);
 
