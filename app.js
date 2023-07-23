@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const userRouter = require("./routes/user");
 const sequelize = require("./utils/database");
+const chatRouter = require("./routes/chat");
+const User = require("./models/User");
+const Chat = require("./models/chat");
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,6 +18,11 @@ app.use(
 );
 
 app.use("/user", userRouter);
+app.use("/chat", chatRouter);
+
+// relations (associations)
+User.hasMany(Chat);
+Chat.belongsTo(User);
 
 sequelize
   .sync()
