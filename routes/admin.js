@@ -1,25 +1,19 @@
 const express = require("express");
 const userAuthentication = require("../middleware/auth");
-const groupController = require("../controllers/group");
+const adminController = require("../controllers/admin");
 
 const router = express.Router();
 
 router.get(
-  "/",
+  "/make-admin",
   userAuthentication.authenticateToken,
-  groupController.getGroups
+  adminController.makeAdmin
 );
 
 router.get(
-  "/getmembers",
+  "/remove-admin",
   userAuthentication.authenticateToken,
-  groupController.getMembers
-);
-
-router.get(
-  "/getNonMembers",
-  userAuthentication.authenticateToken,
-  groupController.getNonMembers
+  adminController.removeAdmin
 );
 
 module.exports = router;

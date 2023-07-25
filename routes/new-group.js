@@ -28,4 +28,10 @@ router.delete(
   groupChatController.deleteUserFromGroup
 );
 
+router.post(
+  "/edit-group",
+  userAuthentication.authenticateToken,
+  groupChatController.postUpdateGroup
+);
+
 module.exports = router;
